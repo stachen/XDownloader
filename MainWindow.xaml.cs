@@ -24,5 +24,28 @@ namespace XDownloader
         {
             InitializeComponent();
         }
+
+        public class Row
+        {
+            public string Url { get; set; }
+            public string Title { get; set; }
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+
+            var rows = new List<Row>();
+            rows.Add(new Row() { Url = "Http://www.google.com", Title = "Good stuff" });
+            var query = from row in rows
+                select row;
+
+
+            dataGrid.ItemsSource = query.ToList();
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
