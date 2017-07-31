@@ -53,7 +53,7 @@ namespace XDownloader
         {
             var grid = (DataGrid)sender;
             var index = grid.SelectedIndex;
-            if(index == -1 )
+            if(index < 0 )
             {
                 return;
             }
@@ -62,6 +62,11 @@ namespace XDownloader
             dataGrid.ItemsSource = sources;
             Console.WriteLine(sender);
             Console.WriteLine(e);
+        }
+
+        private void textBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }
