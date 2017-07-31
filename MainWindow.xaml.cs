@@ -33,19 +33,35 @@ namespace XDownloader
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-
             var rows = new List<Row>();
-            rows.Add(new Row() { Url = "Http://www.google.com", Title = "Good stuff" });
+            for (int i = 0; i < 1000; i++)
+            {
+                rows.Add(new Row() { Url = "Http://www.google.com", Title = "Good stuff" });
+                rows.Add(new Row() { Url = "Http://www.yahoo.com", Title = "Good stuff 2" });
+            }
             var query = from row in rows
                 select row;
-
-
-            dataGrid.ItemsSource = query.ToList();
+            dataGrid.ItemsSource = rows;
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void dataGrid_KeyDown(object sender, KeyEventArgs e)
+        {
+            var grid = (DataGrid)sender;
+            var index = grid.SelectedIndex;
+            if(index == -1 )
+            {
+                return;
+            }
+            var sources = grid.ItemsSource.Cast<Row>().ToList();
+            sources.RemoveAt(index);
+            dataGrid.ItemsSource = sources;
+            Console.WriteLine(sender);
+            Console.WriteLine(e);
         }
     }
 }
